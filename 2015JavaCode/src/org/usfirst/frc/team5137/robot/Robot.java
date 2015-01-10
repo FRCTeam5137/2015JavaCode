@@ -2,7 +2,8 @@
 package org.usfirst.frc.team5137.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Joystick;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -16,7 +17,13 @@ public class Robot extends IterativeRobot {
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
+	
+		RobotDrive chassis = new RobotDrive(0,1);
+		Joystick driveStick = new Joystick(0);
+	
     public void robotInit() {
+        chassis.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+        chassis.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
 
     }
 
@@ -31,7 +38,8 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        
+    
+    chassis.arcadeDrive(driveStick);
     }
     
     /**
